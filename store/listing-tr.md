@@ -82,6 +82,9 @@ tablolar sitede.
   tutulur ve tarayıcı kapanınca silinir
 • Pano okuma isteğe bağlı bir izindir; yalnızca "Panodan yapıştır" düğmesine
   basarsanız sorulur ve reddedilebilir
+• MIT lisanslı açık kaynak — yukarıdaki her madde
+  github.com/ccgeneratororg/ccgenerator-chrome adresindeki kodla
+  doğrulanabilir; mağazaya yüklenen paket de o koddan üretiliyor
 
 ■ KİMLER İÇİN
 Stripe, Adyen ya da iyzico entegrasyonu yazan geliştiriciler. Aynı ödeme
@@ -103,5 +106,7 @@ Dolandırıcılık, kart sahtekârlığı ya da herhangi bir satın alma girişi
 Test verisini canlı bir ödeme sisteminde ya da size ait olmayan bir sistemde
 kullanmak bu eklentinin amacı değildir.
 
-Ücretsiz ve ne yaptığı konusunda açık — ccgenerator.org ekibinden.
+Ücretsiz, açık kaynak ve ne yaptığı konusunda açık — kodun tamamı
+github.com/ccgeneratororg/ccgenerator-chrome adresinde. ccgenerator.org
+ekibinden.
 ```

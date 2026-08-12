@@ -19,6 +19,7 @@
 
   var SITE = 'https://ccgenerator.org';
   var UTM = '?utm_source=chrome-extension&utm_medium=referral';
+  var SOURCE = 'https://github.com/ccgeneratororg/ccgenerator-chrome';
 
   /* The deep tools stay on the site. The popup covers the fast path — generate,
    * check, grab a gateway's number — and hands off for everything that needs
@@ -29,7 +30,11 @@
     { key: 'linkIban', path: '/iban-generator/' },
     { key: 'linkIdentity', path: '/fake-name-address-generator/' },
     { key: 'linkCardImage', path: '/credit-card-image-generator/' },
-    { key: 'linkGuides', path: '/guides/' }
+    { key: 'linkGuides', path: '/guides/' },
+    /* Off-site, so it carries a full url and no campaign tag. The claims this
+     * popup makes about itself — no network requests, no host permissions —
+     * are only worth making if the reader can go and check them. */
+    { key: 'linkSource', url: SOURCE }
   ];
 
   var t = CCG_I18N.t;
@@ -417,7 +422,7 @@
   function buildFooter() {
     SITE_LINKS.forEach(function (link) {
       var anchor = document.createElement('a');
-      anchor.href = SITE + link.path + UTM;
+      anchor.href = link.url || SITE + link.path + UTM;
       anchor.target = '_blank';
       anchor.rel = 'noopener';
       anchor.textContent = t(link.key);

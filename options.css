@@ -32,3 +32,9 @@ body.options {
 .saved { color: var(--ok); font-size: 12px; }
 
 .options .fineprint { margin-top: 14px; }
+
+/* The source link sits in fineprint, which is --muted at 10px; left to the
+ * browser default it would come out as underlined link blue and fail the
+ * contrast the dark theme is otherwise holding. */
+.options .fineprint a { color: var(--primary); text-decoration: none; }
+.options .fineprint a:hover { text-decoration: underline; }

@@ -78,6 +78,7 @@
   "linkIdentity": { "message": "Ad & adres" },
   "linkCardImage": { "message": "Kart görseli" },
   "linkGuides": { "message": "Rehberler" },
+  "linkSource": { "message": "Kaynak kodu" },
 
   "toastCopiedShort": { "message": "Kopyalandı" },
   "toastNumberCopied": { "message": "Kart numarası kopyalandı" },
@@ -110,6 +111,7 @@
     "message": "Klavye kısayolları — Alt+Shift+C açılır pencereyi açar, Alt+Shift+F açık sayfadaki formu doldurur. chrome://extensions/shortcuts adresinden değiştirebilirsiniz."
   },
   "optSaved": { "message": "Kaydedildi" },
+  "optSource": { "message": "Açık kaynak, MIT lisanslı — kodu GitHub'da inceleyebilirsiniz" },
 
   "disclaimer": {
     "message": "Yalnızca yazılım testi için üretilmiş, Luhn geçerli sahte değerlerdir. Gerçek kart değildir ve ödemede kullanılamaz."

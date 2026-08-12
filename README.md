@@ -3,6 +3,11 @@
 The Chrome extension for [ccgenerator.org](https://ccgenerator.org) — Luhn-valid
 **test** card data for developers and QA, one click from any checkout form.
 
+Open source under the [MIT licence](LICENSE). This repository is the complete
+source of the published extension: `scripts/package.py` builds the uploaded ZIP
+from it and nothing else, so every claim the listing makes — no network
+requests, no remote code, no host permissions — can be read off the files here.
+
 It is deliberately a small surface. The popup covers the three things people do
 dozens of times a day while building a payment flow; everything that needs room
 to explain itself stays on the site and is one link away.
@@ -57,8 +62,23 @@ content/autofill.js    injected on demand: field detection, filling, toast
 _locales/{en,tr}       UI and store listing strings
 icons/                 16/32/48/128 toolbar and store icons
 scripts/make-assets.py regenerates icons/ and store/promo-*.png
+scripts/package.py     builds the Web Store upload ZIP
 store/                 Web Store listing copy, promo art, submission notes
 ```
+
+## Packaging
+
+```bash
+python3 scripts/package.py
+```
+
+Writes `../ccgenerator-chrome-<version>.zip`. It builds from an explicit
+allowlist with Python's `zipfile` rather than shelling out to `zip -r`: several
+files here carry a `com.apple.provenance` extended attribute, and both macOS
+`zip` and Finder's "Compress" turn that into a `__MACOSX/` directory of `._`
+AppleDouble members inside the archive. The script cannot produce those, checks
+for them anyway, and verifies that every path the manifest references is in the
+package.
 
 ## Permissions, and why each one is there
 
@@ -111,3 +131,13 @@ Pillow.
 
 See [store/SUBMISSION.md](store/SUBMISSION.md) for the listing copy, the
 permission justifications the dashboard asks for, and the screenshot plan.
+
+## Licence
+
+[MIT](LICENSE). `LICENSE` is shipped inside the packaged extension as well as
+kept here.
+
+The licence covers the code. It does not make the numbers this code produces
+anything other than test data: they satisfy the Luhn checksum and the networks'
+published prefix and length rules, no bank issued them, and no payment will
+ever clear on one. Anything built from this is subject to the same fact.

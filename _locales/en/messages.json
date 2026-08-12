@@ -78,6 +78,7 @@
   "linkIdentity": { "message": "Names & addresses" },
   "linkCardImage": { "message": "Card image" },
   "linkGuides": { "message": "Guides" },
+  "linkSource": { "message": "Source code" },
 
   "toastCopiedShort": { "message": "Copied" },
   "toastNumberCopied": { "message": "Card number copied" },
@@ -110,6 +111,7 @@
     "message": "Keyboard shortcuts — Alt+Shift+C opens the popup, Alt+Shift+F fills the form on the current page. Change them at chrome://extensions/shortcuts."
   },
   "optSaved": { "message": "Saved" },
+  "optSource": { "message": "Open source, MIT licensed — read or audit the code on GitHub" },
 
   "disclaimer": {
     "message": "Dummy, Luhn-valid test values for software testing only. These are not real cards and cannot be used for payments."

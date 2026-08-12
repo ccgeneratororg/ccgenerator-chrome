@@ -6,13 +6,24 @@ copy lives in [listing-en.md](listing-en.md) and [listing-tr.md](listing-tr.md).
 ## Package
 
 ```bash
-cd chrome-extension
-zip -r ../ccgenerator-chrome-1.0.0.zip . \
-  -x '.git/*' '.preview-*' 'store/*' 'scripts/*' '*.DS_Store'
+python3 scripts/package.py
 ```
 
-`store/` and `scripts/` are development material and must not ship inside the
-package — a reviewer reading listing copy in the uploaded ZIP is noise at best.
+Writes `../ccgenerator-chrome-<version>.zip` and prints its contents. Do not
+build the ZIP with `zip -r` or Finder's "Compress": several source files carry a
+`com.apple.provenance` extended attribute, and both of those tools turn that
+into a `__MACOSX/` directory full of `._` AppleDouble members inside the
+archive. `scripts/package.py` writes each file from an explicit allowlist with
+`zipfile`, so no macOS metadata can reach the package, and it fails loudly if
+any turns up anyway.
+
+The allowlist is also why `store/`, `scripts/`, `README.md` and `.gitignore` are
+absent: they are development material, and a reviewer reading listing copy
+inside the uploaded ZIP is noise at best. `LICENSE` is the one file in the
+package that nothing loads — an extension whose listing calls it open source
+should carry its terms where a user who unpacks the CRX will find them. Add a file to `FILES` in that script
+when the extension starts loading it — the script checks the manifest's own
+references and refuses to build if one is missing.
 
 ## Store listing fields
 
@@ -30,6 +41,13 @@ package — a reviewer reading listing copy in the uploaded ZIP is noise at best
 | Support URL | https://ccgenerator.org/contact/ |
 | Homepage URL | https://ccgenerator.org/ |
 | Privacy policy URL | https://ccgenerator.org/privacy-policy/ |
+
+The dashboard has no field for the source repository. It is carried instead by
+the privacy section and the closing line of the detailed description, and by the
+reviewer notes below — the place it is worth the most, since it lets the review
+check the "no network requests, no remote code" claims rather than take them.
+Leave it out of the single purpose and permission justification fields: those
+are read as answers to a question, and a URL in them is noise.
 
 ### Screenshots to capture (1280×800, popup centred on a light neutral field)
 
@@ -117,6 +135,13 @@ Tick **none of them**, and state:
 > under the deck, the options page, and the store description, which also states
 > plainly what the extension is not for. There is no BIN database, no lookup of
 > any kind, and no way for a number to leave the user's machine.
+>
+> The extension is open source under the MIT licence. The complete source of
+> this build, including scripts/package.py which produces the uploaded ZIP from
+> an explicit file list, is at https://github.com/ccgeneratororg/ccgenerator-chrome
+> — the claims above (no network requests, no remotely hosted code, no host
+> permissions, no content script running on its own) can be verified against it
+> directly.
 
 Some competing listings rank on "working", "real" and "live" card claims. Do not
 follow them: those claims are what gets a listing in this category removed, and
