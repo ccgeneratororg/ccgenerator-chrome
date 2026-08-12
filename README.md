@@ -18,7 +18,7 @@ to explain itself stays on the site and is one link away.
 |---|---|
 | **Generate** | 1–25 dummy cards on any of the nine supported networks (Visa, Mastercard, Amex, Troy, Discover, JCB, Diners Club, Maestro, UnionPay), or a random mix. Copy one number, copy the whole card, copy all, copy JSON, export CSV. |
 | **Validate** | Paste a number and get the Luhn check digit, the detected network, the accepted lengths for that network, the MII and the digit anatomy. |
-| **Test cards** | The published sandbox numbers for Stripe, Braintree, Adyen, Square, PayPal, Authorize.Net and iyzico, including the common decline triggers. Click the row to copy, or **Fill** to put it straight into the form — the fields the provider does not pin are generated around it. |
+| **Test cards** | The published sandbox numbers for [Stripe](https://ccgenerator.org/guides/stripe-test-card-numbers/), Braintree, Adyen, Square, [PayPal](https://ccgenerator.org/guides/paypal-sandbox-testing/), Authorize.Net and iyzico, including the common decline triggers. Click the row to copy, or **Fill** to put it straight into the form — the fields the provider does not pin are generated around it. |
 | **Autofill** | Fills the card number, expiry, CVC and cardholder name on the page you are looking at — from either tab of the popup, the right-click menu, or `Alt+Shift+F`. |
 
 ### Filling a gateway test card
@@ -36,9 +36,29 @@ proves nothing.
 
 ## What stays on the site
 
-The popup links out to these rather than reimplementing them: BIN lookup, IBAN
-generator, name and address generator, card image generator, the full gateway
-test-card tables with 3-D Secure and decline codes, and the guides.
+The popup links out to these rather than reimplementing them:
+
+- [BIN lookup](https://ccgenerator.org/bin-lookup/) and the
+  [card image generator](https://ccgenerator.org/credit-card-image-generator/)
+- [IBAN generator](https://ccgenerator.org/iban-generator/) and the
+  [name and address generator](https://ccgenerator.org/fake-name-address-generator/)
+- The full [gateway test-card tables](https://ccgenerator.org/test-card-numbers/),
+  with 3-D Secure and decline codes — the popup carries the common subset
+- The [guides](https://ccgenerator.org/guides/)
+
+### The reference behind the code
+
+The tables in `src/cards.js` are not folklore; each one has a page explaining
+where it comes from. Worth reading before changing a range or a length:
+
+| | |
+|---|---|
+| [The Luhn algorithm](https://ccgenerator.org/guides/luhn-algorithm/) | What `CCG.luhnValid()` and the check-digit report implement, and [in code](https://ccgenerator.org/guides/luhn-algorithm-code-examples/) in a dozen languages |
+| [Card number structure](https://ccgenerator.org/guides/credit-card-number-structure/) | MII, IIN, account identifier, check digit — the anatomy the Validate tab draws |
+| [BIN/IIN explained](https://ccgenerator.org/guides/bin-iin-explained/) | Why detection reads the first six to eight digits |
+| [Length by network](https://ccgenerator.org/guides/card-number-length-by-network/) | The `lengths` array per network, including the 19-digit Maestro and UnionPay ranges |
+| [Brand detection regex](https://ccgenerator.org/guides/card-brand-detection-regex/) | The prefix rules `CCG.detect()` is a port of |
+| [Why generated cards have no balance](https://ccgenerator.org/guides/why-generated-cards-have-no-balance/) | The answer to the question every issue about this repo will eventually ask |
 
 ## Install from source
 
@@ -103,7 +123,8 @@ change, change them in both places or the extension and the site will disagree
 about the same number.
 
 One difference exists on purpose and is marked in the source: the extension
-detects UnionPay's `81` range as well as `62`. The site's validator only tests
+detects UnionPay's `81` range as well as `62`. The
+[site's validator](https://ccgenerator.org/credit-card-validator/) only tests
 `62`, which reports Adyen's own UnionPay test card `8171 9999 2766 0000` as an
 unrecognised prefix. The site is worth fixing to match.
 
