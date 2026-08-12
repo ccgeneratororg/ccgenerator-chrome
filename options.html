@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CC Generator — Options</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body class="options">
+  <header class="head">
+    <img class="head-logo" src="icons/icon48.png" alt="" width="28" height="28">
+    <div class="head-text">
+      <strong data-i18n="optionsTitle">Options</strong>
+      <span data-i18n="appShortName">CC Generator</span>
+    </div>
+  </header>
+
+  <main class="options-body">
+    <label class="field field--block">
+      <span data-i18n="optDefaultNetwork">Default network</span>
+      <select id="defaultNetwork"></select>
+    </label>
+
+    <label class="field field--block">
+      <span data-i18n="optQuantity">Default quantity</span>
+      <select id="quantity">
+        <option value="1">1</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="25">25</option>
+      </select>
+    </label>
+
+    <label class="field field--block">
+      <span data-i18n="optExpiryYears">Expiry window (years ahead)</span>
+      <select id="expiryYears">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+      </select>
+    </label>
+
+    <label class="field field--block">
+      <span data-i18n="optTheme">Theme</span>
+      <select id="theme">
+        <option value="auto" data-i18n="themeAuto">Match system</option>
+        <option value="light" data-i18n="themeLight">Light</option>
+        <option value="dark" data-i18n="themeDark">Dark</option>
+      </select>
+    </label>
+
+    <label class="check">
+      <input type="checkbox" id="holderName">
+      <span data-i18n="optHolderName">Include a cardholder name</span>
+    </label>
+
+    <label class="check">
+      <input type="checkbox" id="autoGenerate">
+      <span data-i18n="optAutoGenerate">Generate a card as soon as the popup opens</span>
+    </label>
+
+    <p class="fineprint" data-i18n="optShortcutHint">
+      Keyboard shortcuts (open the popup, fill the form on the page) can be changed at chrome://extensions/shortcuts.
+    </p>
+
+    <div class="options-actions">
+      <button class="button button--primary" id="save" type="button" data-i18n="btnSave">Save</button>
+      <button class="button" id="reset" type="button" data-i18n="btnReset">Reset</button>
+      <span class="saved" id="saved" hidden data-i18n="optSaved">Saved</span>
+    </div>
+
+    <p class="disclaimer" data-i18n="disclaimer">
+      Dummy, Luhn-valid test values for software testing only. Not real cards; they cannot be used for payments.
+    </p>
+  </main>
+
+  <script src="src/cards.js"></script>
+  <script src="src/i18n.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

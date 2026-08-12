@@ -1,0 +1,117 @@
+{
+  "appName": {
+    "message": "Credit Card Generator: Test Card Numbers",
+    "description": "Extension name shown in Chrome and on the Web Store listing. Max 45 characters."
+  },
+  "appDesc": {
+    "message": "Generate Luhn-valid test credit card numbers, validate a BIN and autofill checkout forms. Dummy card data for developers and QA.",
+    "description": "Store listing summary. Max 132 characters."
+  },
+  "appShortName": { "message": "CC Generator" },
+  "headTagline": { "message": "Luhn-valid test card data" },
+
+  "cmdFillDesc": { "message": "Fill the payment form on this page with a test card" },
+
+  "menuFill": { "message": "Fill this payment form with a test card" },
+  "menuInsert": { "message": "Insert a test card number here" },
+  "menuCopy": { "message": "Copy a test card to the clipboard" },
+  "menuValidate": { "message": "Check this card number (Luhn + network)" },
+  "menuSite": { "message": "Open ccgenerator.org" },
+
+  "tabGenerate": { "message": "Generate" },
+  "tabValidate": { "message": "Validate" },
+  "tabGateways": { "message": "Test cards" },
+
+  "labelNetwork": { "message": "Card network" },
+  "labelQuantity": { "message": "Quantity" },
+  "labelCardNumber": { "message": "Card number" },
+  "labelGateway": { "message": "Gateway" },
+  "labelExpires": { "message": "Exp" },
+  "labelCvv": { "message": "CVV" },
+  "labelHolder": { "message": "Name" },
+
+  "chipRandom": { "message": "Random" },
+  "badgeTestOnly": { "message": "Test only" },
+
+  "btnGenerate": { "message": "Generate" },
+  "btnCopyAll": { "message": "Copy all" },
+  "btnCopyJson": { "message": "JSON" },
+  "btnCsv": { "message": "CSV" },
+  "btnFill": { "message": "Fill form" },
+  "btnFillShort": { "message": "Fill" },
+  "btnFilled": { "message": "Filled ✓" },
+  "btnCopyCard": { "message": "Copy card" },
+  "btnCopyNumber": { "message": "Copy the number" },
+  "btnCheck": { "message": "Check" },
+  "btnPasteCheck": { "message": "Paste from clipboard" },
+  "btnSave": { "message": "Save" },
+  "btnReset": { "message": "Reset" },
+
+  "validateEmpty": { "message": "Type or paste a card number. Spaces and dashes are ignored." },
+  "validateFineprint": {
+    "message": "Format only: Luhn check digit, network prefix and length. Nothing here can tell you whether a card exists, is active, or has funds. The number stays on this machine."
+  },
+
+  "rowLength": { "message": "Length" },
+  "rowNetwork": { "message": "Network" },
+  "rowNetworkLength": { "message": "Length for this network" },
+  "rowLuhn": { "message": "Luhn check digit" },
+  "rowIndustry": { "message": "Industry (MII)" },
+
+  "resultDigits": { "message": "digits" },
+  "resultLengthOutOfRange": { "message": "$1 digits — outside the 12–19 range ISO/IEC 7812 allows" },
+  "resultNetworkLengthMismatch": { "message": "$1 uses $2 digits, this has $3" },
+  "resultUnknownPrefix": { "message": "unrecognised prefix — not one of the published ranges" },
+  "resultUnknownNetwork": { "message": "Unknown network" },
+  "resultLuhnOk": { "message": "correct" },
+  "resultCheckDigitShouldBe": { "message": "Check digit should be $1, got $2 — usually a mistyped digit" },
+
+  "anatomyMii": { "message": "MII" },
+  "anatomyIin": { "message": "Rest of IIN" },
+  "anatomyAccount": { "message": "Account identifier" },
+  "anatomyCheck": { "message": "Check digit" },
+
+  "linkFullTable": { "message": "Full table, decline codes and 3-D Secure cards →" },
+  "linkAllTools": { "message": "All tools" },
+  "linkBinLookup": { "message": "BIN lookup" },
+  "linkIban": { "message": "IBAN generator" },
+  "linkIdentity": { "message": "Names & addresses" },
+  "linkCardImage": { "message": "Card image" },
+  "linkGuides": { "message": "Guides" },
+
+  "toastCopiedShort": { "message": "Copied" },
+  "toastNumberCopied": { "message": "Card number copied" },
+  "toastCardCopied": { "message": "Card details copied" },
+  "toastAllCopied": { "message": "All cards copied" },
+  "toastJsonCopied": { "message": "JSON copied" },
+  "toastCopied": { "message": "Test card copied" },
+  "toastFilled": { "message": "Filled $1 field(s)" },
+  "toastNoFields": { "message": "No payment fields found" },
+  "toastNoFieldsBody": { "message": "Hosted card iframes (Stripe Elements, Braintree hosted fields) cannot be filled — copy the number instead." },
+  "toastInserted": { "message": "Test card number inserted" },
+  "toastNoField": { "message": "Right-click inside a text field first" },
+  "toastFillBlocked": { "message": "This page cannot be filled" },
+  "toastPasteManually": { "message": "Paste into the field with Ctrl+V / ⌘V" },
+  "toastNotANumber": { "message": "That selection is not a card number" },
+  "toastValid": { "message": "Valid format" },
+  "toastInvalid": { "message": "Invalid check digit" },
+
+  "optionsTitle": { "message": "Options" },
+  "optDefaultNetwork": { "message": "Default network" },
+  "optQuantity": { "message": "Default quantity" },
+  "optExpiryYears": { "message": "Expiry window (years ahead)" },
+  "optTheme": { "message": "Theme" },
+  "themeAuto": { "message": "Match system" },
+  "themeLight": { "message": "Light" },
+  "themeDark": { "message": "Dark" },
+  "optHolderName": { "message": "Include a cardholder name" },
+  "optAutoGenerate": { "message": "Generate a card as soon as the popup opens" },
+  "optShortcutHint": {
+    "message": "Keyboard shortcuts — Alt+Shift+C opens the popup, Alt+Shift+F fills the form on the current page. Change them at chrome://extensions/shortcuts."
+  },
+  "optSaved": { "message": "Saved" },
+
+  "disclaimer": {
+    "message": "Dummy, Luhn-valid test values for software testing only. These are not real cards and cannot be used for payments."
+  }
+}

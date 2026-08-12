@@ -1,0 +1,8 @@
+# Local preview harnesses (popup/options wrapped in a chrome.* shim so they can
+# be opened as plain files). Generated ad hoc, never committed.
+.preview-*.html
+
+# Packaged uploads
+*.zip
+
+.DS_Store

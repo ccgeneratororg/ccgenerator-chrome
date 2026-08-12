@@ -1,1 +1,113 @@
 # ccgenerator-chrome
+
+The Chrome extension for [ccgenerator.org](https://ccgenerator.org) — Luhn-valid
+**test** card data for developers and QA, one click from any checkout form.
+
+It is deliberately a small surface. The popup covers the three things people do
+dozens of times a day while building a payment flow; everything that needs room
+to explain itself stays on the site and is one link away.
+
+## What is in the extension
+
+| | |
+|---|---|
+| **Generate** | 1–25 dummy cards on any of the nine supported networks (Visa, Mastercard, Amex, Troy, Discover, JCB, Diners Club, Maestro, UnionPay), or a random mix. Copy one number, copy the whole card, copy all, copy JSON, export CSV. |
+| **Validate** | Paste a number and get the Luhn check digit, the detected network, the accepted lengths for that network, the MII and the digit anatomy. |
+| **Test cards** | The published sandbox numbers for Stripe, Braintree, Adyen, Square, PayPal, Authorize.Net and iyzico, including the common decline triggers. Click the row to copy, or **Fill** to put it straight into the form — the fields the provider does not pin are generated around it. |
+| **Autofill** | Fills the card number, expiry, CVC and cardholder name on the page you are looking at — from either tab of the popup, the right-click menu, or `Alt+Shift+F`. |
+
+### Filling a gateway test card
+
+A provider publishes a number; a checkout form wants four or five fields. The
+missing ones are generated, but never on top of a value the provider pins —
+`src/testcards.js` carries `defaults` per gateway and `expiry`/`cvv` per card,
+and `CCG.cardFromNumber()` keeps whatever it is given and invents only the rest,
+at the right CVV length for the detected network.
+
+That distinction is the whole point. Adyen's cards expect **03/2030** and CVC
+**737** (7373 on Amex); Square's expect CVV **111**. Substituting a random
+expiry there produces a card the provider no longer recognises, and a test that
+proves nothing.
+
+## What stays on the site
+
+The popup links out to these rather than reimplementing them: BIN lookup, IBAN
+generator, name and address generator, card image generator, the full gateway
+test-card tables with 3-D Secure and decline codes, and the guides.
+
+## Install from source
+
+1. `chrome://extensions` → turn on **Developer mode**
+2. **Load unpacked** → pick this directory
+3. The toolbar icon opens the popup. `Alt+Shift+C` opens it from the keyboard;
+   `Alt+Shift+F` fills the form on the current page. Both are remappable at
+   `chrome://extensions/shortcuts`.
+
+## Layout
+
+```
+manifest.json          MV3 manifest, permissions and commands
+background.js          service worker: context menus, shortcuts, injection
+popup.html/.css/.js    the three-tab popup
+options.html/.css/.js  defaults (network, quantity, expiry window, theme)
+src/cards.js           network table, Luhn, generation, detection, exports
+src/testcards.js       published gateway sandbox numbers
+src/i18n.js            applies _locales strings to the markup
+content/autofill.js    injected on demand: field detection, filling, toast
+_locales/{en,tr}       UI and store listing strings
+icons/                 16/32/48/128 toolbar and store icons
+scripts/make-assets.py regenerates icons/ and store/promo-*.png
+store/                 Web Store listing copy, promo art, submission notes
+```
+
+## Permissions, and why each one is there
+
+| Permission | Why |
+|---|---|
+| `activeTab` | Reach the page the user pointed at — and only on a click, a menu choice or a shortcut. There is **no** host permission and no standing content script, so the extension cannot read pages on its own. |
+| `scripting` | Inject `content/autofill.js` into that tab at that moment. |
+| `storage` | Settings (`sync`) and the cards currently shown in the popup (`session`, cleared when the browser closes). |
+| `contextMenus` | The four right-click entries. |
+| `clipboardRead` | **Optional.** Requested only when the visitor presses "Paste from clipboard" in the Validate tab, and declinable. |
+
+Nothing generated or typed is sent anywhere: there is no `fetch`, no XHR and no
+analytics in the extension. Card numbers exist in the popup, in the clipboard if
+the user copies one, and in the page if the user fills a form.
+
+## Keeping in step with the site
+
+`src/cards.js` is a port of the tables and algorithms in the site repo
+(`layouts/partials/card-generator.html`, `card-validator.html` and
+`packages/test-cards/src/`). When a network's IIN ranges or accepted lengths
+change, change them in both places or the extension and the site will disagree
+about the same number.
+
+One difference exists on purpose and is marked in the source: the extension
+detects UnionPay's `81` range as well as `62`. The site's validator only tests
+`62`, which reports Adyen's own UnionPay test card `8171 9999 2766 0000` as an
+unrecognised prefix. The site is worth fixing to match.
+
+## Tests
+
+There is no test runner; the engine is small enough to check from a shell.
+
+```bash
+node -e "global.crypto=require('crypto').webcrypto;const C=require('./src/cards.js').CCG;let bad=0;for(const k of C.NETWORK_KEYS){const r=C.NETWORKS[k];for(let i=0;i<5000;i++){const c=C.generateCard(k);const d=C.detect(c.number);if(!C.luhnValid(c.number)||!r.lengths.includes(c.number.length)||c.cvv.length!==r.cvvLength||!d||d.key!==k){console.log('FAIL',k,c.number);bad++;break}}}console.log(bad?'FAILURES '+bad:'ALL PASS')"
+```
+
+Autofill is checked against `store/field-detection-cases.md`, which lists the
+seven form shapes the detector is expected to handle.
+
+## Regenerating the artwork
+
+```bash
+python3 scripts/make-assets.py
+```
+
+Writes `icons/icon{16,32,48,128}.png` and the Web Store promo images. Requires
+Pillow.
+
+## Publishing
+
+See [store/SUBMISSION.md](store/SUBMISSION.md) for the listing copy, the
+permission justifications the dashboard asks for, and the screenshot plan.

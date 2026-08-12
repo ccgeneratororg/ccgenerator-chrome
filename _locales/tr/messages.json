@@ -1,0 +1,117 @@
+{
+  "appName": {
+    "message": "Kredi Kartı Üretici: Test Kart Numarası",
+    "description": "Extension name shown in Chrome and on the Web Store listing. Max 45 characters."
+  },
+  "appDesc": {
+    "message": "Luhn geçerli test kredi kartı numarası üretin, BIN doğrulayın ve ödeme formunu doldurun. Geliştirici ve QA için sahte kart verisi.",
+    "description": "Store listing summary. Max 132 characters."
+  },
+  "appShortName": { "message": "CC Generator" },
+  "headTagline": { "message": "Luhn geçerli test kartı verisi" },
+
+  "cmdFillDesc": { "message": "Bu sayfadaki ödeme formunu test kartıyla doldur" },
+
+  "menuFill": { "message": "Bu ödeme formunu test kartıyla doldur" },
+  "menuInsert": { "message": "Buraya test kart numarası ekle" },
+  "menuCopy": { "message": "Test kartını panoya kopyala" },
+  "menuValidate": { "message": "Bu kart numarasını denetle (Luhn + ağ)" },
+  "menuSite": { "message": "ccgenerator.org adresini aç" },
+
+  "tabGenerate": { "message": "Üret" },
+  "tabValidate": { "message": "Doğrula" },
+  "tabGateways": { "message": "Test kartları" },
+
+  "labelNetwork": { "message": "Kart ağı" },
+  "labelQuantity": { "message": "Adet" },
+  "labelCardNumber": { "message": "Kart numarası" },
+  "labelGateway": { "message": "Ödeme sağlayıcı" },
+  "labelExpires": { "message": "SKT" },
+  "labelCvv": { "message": "CVV" },
+  "labelHolder": { "message": "Ad" },
+
+  "chipRandom": { "message": "Rastgele" },
+  "badgeTestOnly": { "message": "Yalnızca test" },
+
+  "btnGenerate": { "message": "Üret" },
+  "btnCopyAll": { "message": "Tümünü kopyala" },
+  "btnCopyJson": { "message": "JSON" },
+  "btnCsv": { "message": "CSV" },
+  "btnFill": { "message": "Formu doldur" },
+  "btnFillShort": { "message": "Doldur" },
+  "btnFilled": { "message": "Dolduruldu ✓" },
+  "btnCopyCard": { "message": "Kartı kopyala" },
+  "btnCopyNumber": { "message": "Numarayı kopyala" },
+  "btnCheck": { "message": "Denetle" },
+  "btnPasteCheck": { "message": "Panodan yapıştır" },
+  "btnSave": { "message": "Kaydet" },
+  "btnReset": { "message": "Sıfırla" },
+
+  "validateEmpty": { "message": "Bir kart numarası yazın veya yapıştırın. Boşluk ve tire yok sayılır." },
+  "validateFineprint": {
+    "message": "Yalnızca biçim denetimi: Luhn kontrol hanesi, ağ ön eki ve uzunluk. Bir kartın var olup olmadığını, aktif olduğunu veya bakiyesini söylemez. Numara bu cihazdan çıkmaz."
+  },
+
+  "rowLength": { "message": "Uzunluk" },
+  "rowNetwork": { "message": "Ağ" },
+  "rowNetworkLength": { "message": "Bu ağ için uzunluk" },
+  "rowLuhn": { "message": "Luhn kontrol hanesi" },
+  "rowIndustry": { "message": "Sektör (MII)" },
+
+  "resultDigits": { "message": "hane" },
+  "resultLengthOutOfRange": { "message": "$1 hane — ISO/IEC 7812'nin izin verdiği 12–19 aralığının dışında" },
+  "resultNetworkLengthMismatch": { "message": "$1 $2 hane kullanır, bu numarada $3 hane var" },
+  "resultUnknownPrefix": { "message": "tanınmayan ön ek — yayımlanmış aralıkların hiçbirinde değil" },
+  "resultUnknownNetwork": { "message": "Bilinmeyen ağ" },
+  "resultLuhnOk": { "message": "doğru" },
+  "resultCheckDigitShouldBe": { "message": "Kontrol hanesi $1 olmalı, $2 girilmiş — genelde yanlış yazılmış bir hane" },
+
+  "anatomyMii": { "message": "MII" },
+  "anatomyIin": { "message": "IIN'in kalanı" },
+  "anatomyAccount": { "message": "Hesap tanımlayıcı" },
+  "anatomyCheck": { "message": "Kontrol hanesi" },
+
+  "linkFullTable": { "message": "Tam tablo, ret kodları ve 3-D Secure kartları →" },
+  "linkAllTools": { "message": "Tüm araçlar" },
+  "linkBinLookup": { "message": "BIN sorgulama" },
+  "linkIban": { "message": "IBAN üretici" },
+  "linkIdentity": { "message": "Ad & adres" },
+  "linkCardImage": { "message": "Kart görseli" },
+  "linkGuides": { "message": "Rehberler" },
+
+  "toastCopiedShort": { "message": "Kopyalandı" },
+  "toastNumberCopied": { "message": "Kart numarası kopyalandı" },
+  "toastCardCopied": { "message": "Kart bilgileri kopyalandı" },
+  "toastAllCopied": { "message": "Tüm kartlar kopyalandı" },
+  "toastJsonCopied": { "message": "JSON kopyalandı" },
+  "toastCopied": { "message": "Test kartı kopyalandı" },
+  "toastFilled": { "message": "$1 alan dolduruldu" },
+  "toastNoFields": { "message": "Ödeme alanı bulunamadı" },
+  "toastNoFieldsBody": { "message": "Barındırılan kart iframe'leri (Stripe Elements, Braintree hosted fields) doldurulamaz — numarayı kopyalayın." },
+  "toastInserted": { "message": "Test kart numarası eklendi" },
+  "toastNoField": { "message": "Önce bir metin alanının içine sağ tıklayın" },
+  "toastFillBlocked": { "message": "Bu sayfa doldurulamıyor" },
+  "toastPasteManually": { "message": "Alana Ctrl+V / ⌘V ile yapıştırın" },
+  "toastNotANumber": { "message": "Seçim bir kart numarası değil" },
+  "toastValid": { "message": "Biçim geçerli" },
+  "toastInvalid": { "message": "Kontrol hanesi geçersiz" },
+
+  "optionsTitle": { "message": "Ayarlar" },
+  "optDefaultNetwork": { "message": "Varsayılan ağ" },
+  "optQuantity": { "message": "Varsayılan adet" },
+  "optExpiryYears": { "message": "Son kullanma aralığı (yıl)" },
+  "optTheme": { "message": "Tema" },
+  "themeAuto": { "message": "Sistemle aynı" },
+  "themeLight": { "message": "Açık" },
+  "themeDark": { "message": "Koyu" },
+  "optHolderName": { "message": "Kart sahibi adı ekle" },
+  "optAutoGenerate": { "message": "Açılır pencere açılır açılmaz kart üret" },
+  "optShortcutHint": {
+    "message": "Klavye kısayolları — Alt+Shift+C açılır pencereyi açar, Alt+Shift+F açık sayfadaki formu doldurur. chrome://extensions/shortcuts adresinden değiştirebilirsiniz."
+  },
+  "optSaved": { "message": "Kaydedildi" },
+
+  "disclaimer": {
+    "message": "Yalnızca yazılım testi için üretilmiş, Luhn geçerli sahte değerlerdir. Gerçek kart değildir ve ödemede kullanılamaz."
+  }
+}

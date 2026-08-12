@@ -1,0 +1,34 @@
+/* Options page. Reuses popup.css for the tokens and control styles; this file
+ * only widens the layout, since the options page is a full tab. */
+
+body.options {
+  width: auto;
+  max-width: 520px;
+  margin: 0 auto;
+  padding-bottom: 32px;
+}
+
+.options-body { padding: 16px 18px; }
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.check input { accent-color: var(--primary); width: 15px; height: 15px; }
+
+.options-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0 14px;
+}
+
+.options-actions .button--primary { flex: 0 0 auto; padding-inline: 22px; }
+
+.saved { color: var(--ok); font-size: 12px; }
+
+.options .fineprint { margin-top: 14px; }

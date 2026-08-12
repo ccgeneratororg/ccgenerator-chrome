@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>CC Generator</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="head">
+    <img class="head-logo" src="icons/icon48.png" alt="" width="28" height="28">
+    <div class="head-text">
+      <strong data-i18n="appShortName">CC Generator</strong>
+      <span data-i18n="headTagline">Luhn-valid test card data</span>
+    </div>
+    <button class="icon-button" id="open-options" type="button" data-i18n-title="optionsTitle">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9c.14.35.44.62.8.74H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+    </button>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab is-active" type="button" role="tab" data-tab="generate" aria-selected="true" data-i18n="tabGenerate">Generate</button>
+    <button class="tab" type="button" role="tab" data-tab="validate" aria-selected="false" data-i18n="tabValidate">Validate</button>
+    <button class="tab" type="button" role="tab" data-tab="gateways" aria-selected="false" data-i18n="tabGateways">Test cards</button>
+  </nav>
+
+  <main>
+    <!-- Generate -->
+    <section class="panel is-active" data-panel="generate" role="tabpanel">
+      <div class="chips" id="networks" role="group" data-i18n-aria-label="labelNetwork"></div>
+
+      <div class="row">
+        <label class="field">
+          <span data-i18n="labelQuantity">Quantity</span>
+          <select id="quantity">
+            <option value="1">1</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="25">25</option>
+          </select>
+        </label>
+        <button class="button button--primary" id="generate" type="button" data-i18n="btnGenerate">Generate</button>
+      </div>
+
+      <div class="results" id="results" aria-live="polite"></div>
+
+      <div class="row row--actions">
+        <button class="button button--ghost" id="copy-all" type="button" data-i18n="btnCopyAll">Copy all</button>
+        <button class="button button--ghost" id="copy-json" type="button" data-i18n="btnCopyJson">JSON</button>
+        <button class="button button--ghost" id="export-csv" type="button" data-i18n="btnCsv">CSV</button>
+      </div>
+    </section>
+
+    <!-- Validate -->
+    <section class="panel" data-panel="validate" role="tabpanel">
+      <label class="field field--block">
+        <span data-i18n="labelCardNumber">Card number</span>
+        <input id="validate-input" type="text" inputmode="numeric" autocomplete="off"
+               spellcheck="false" maxlength="28" placeholder="4111 1111 1111 1111">
+      </label>
+      <button class="button button--ghost button--wide" id="validate-paste" type="button" data-i18n="btnPasteCheck">Paste from clipboard</button>
+      <div class="report" id="validate-output" aria-live="polite"></div>
+      <p class="fineprint" data-i18n="validateFineprint">
+        Format only: Luhn check digit, network prefix and length. Nothing here can tell you whether a card exists or has funds.
+      </p>
+    </section>
+
+    <!-- Gateway test cards -->
+    <section class="panel" data-panel="gateways" role="tabpanel">
+      <label class="field field--block">
+        <span data-i18n="labelGateway">Gateway</span>
+        <select id="gateway"></select>
+      </label>
+      <p class="note" id="gateway-note"></p>
+      <div class="gateway-list" id="gateway-list"></div>
+      <a class="linkout" id="gateway-link" href="#" target="_blank" rel="noopener"
+         data-i18n="linkFullTable">Full table, decline codes and 3-D Secure cards →</a>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <nav class="foot-links" id="site-links"></nav>
+    <p class="disclaimer" data-i18n="disclaimer">
+      Dummy, Luhn-valid test values for software testing only. Not real cards; they cannot be used for payments.
+    </p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+
+  <script src="src/cards.js"></script>
+  <script src="src/testcards.js"></script>
+  <script src="src/i18n.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
